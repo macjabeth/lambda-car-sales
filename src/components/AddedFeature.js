@@ -1,16 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import useActionCreator from "../hooks/useActionCreator";
 import { removeFeature } from "../actions";
 
 const AddedFeature = React.memo(props => {
-  const dispatch = useDispatch();
+  const remove = useActionCreator(removeFeature, props.feature);
   return (
     <li>
-      {/* Add an onClick to run a function to remove a feature */}
-      <button
-        className="button"
-        onClick={() => dispatch(removeFeature(props.feature))}
-      >
+      <button className="button" onClick={remove}>
         &times;
       </button>
       {props.feature.name}
